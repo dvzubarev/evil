@@ -32,6 +32,10 @@
 (require 'evil-command-window)
 (require 'evil-jumps)
 
+;;; Compatibility for Emacs 23
+(unless (fboundp 'window-body-width)
+  (defalias 'window-body-width 'window-width))
+
 ;;; Motions
 
 ;; Movement commands, or motions, are defined with the macro
@@ -1299,7 +1303,7 @@ Save in REGISTER or in the kill-ring with YANK-HANDLER."
    (t
     (delete-region beg end)))
   ;; place cursor on beginning of line
-  (when (and (called-interactively-p 'any)
+  (when (and (evil-called-interactively-p)
              (eq type 'line))
     (evil-first-non-blank)))
 
@@ -2124,7 +2128,7 @@ lines.  This is the default behaviour for Visual-state insertion."
                   (prog1 (count-lines evil-visual-beginning evil-visual-end)
                     (set-mark m)))))
          (evil-visual-state-p)))
-  (if (and (called-interactively-p 'any)
+  (if (and (evil-called-interactively-p)
            (evil-visual-state-p))
       (cond
        ((eq (evil-visual-type) 'line)
@@ -2167,7 +2171,7 @@ the lines."
                   (evil-visual-rotate 'upper-left)
                   (prog1 (count-lines evil-visual-beginning evil-visual-end)
                     (set-mark m)))))))
-  (if (and (called-interactively-p 'any)
+  (if (and (evil-called-interactively-p)
            (evil-visual-state-p))
       (cond
        ((or (eq (evil-visual-type) 'line)

@@ -396,7 +396,7 @@ if COUNT is positive, and to the left of it if negative.
            (cond
             ;; Visual state: extend the current selection
             ((and (evil-visual-state-p)
-                  (called-interactively-p 'any))
+                  (evil-called-interactively-p))
              ;; if we are at the beginning of the Visual selection,
              ;; go to the left (negative COUNT); if at the end,
              ;; go to the right (positive COUNT)
@@ -518,7 +518,7 @@ if COUNT is positive, and to the left of it if negative.
        (unwind-protect
            (let ((evil-inhibit-operator evil-inhibit-operator-value))
              (unless (and evil-inhibit-operator
-                          (called-interactively-p 'any))
+                          (evil-called-interactively-p))
                ,@body))
          (setq evil-inhibit-operator-value nil)))))
 

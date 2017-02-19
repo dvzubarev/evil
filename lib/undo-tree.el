@@ -51,7 +51,9 @@
 ;; Installation
 ;; ============
 ;;
-;; This package requires Emacs version 24 or newer.
+;; This package has only been tested with Emacs versions 24 and CVS. It should
+;; work in Emacs versions 22 and 23 too, but will not work without
+;; modifications in earlier versions of Emacs.
 ;;
 ;; To install `undo-tree-mode', make sure this file is saved in a directory in
 ;; your `load-path', and add the line:
